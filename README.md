@@ -1,36 +1,32 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+📝 Task Management App
+Aplicación desarrollada con React, Redux Toolkit y Next.js para la gestión de tareas.
+Permite a los usuarios autenticarse, crear, completar y eliminar tareas, además de visualizar un resumen dinámico.
 
-## Getting Started
+🔐 Backend originalmente propuesto en Java, pero se ha implementado con Supabase (PostgreSQL + Auth) para aprovechar un entorno fullstack JavaScript moderno, desplegable fácilmente en plataformas como Vercel
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+🚀 Funcionalidades principales
+1️⃣ Lista de Tareas
+Componente: <TaskList />
+🔹 Muestra todas las tareas del usuario desde el backend
+🔹 Permite marcar una tarea como completada
+🔹 Cada tarea puede eliminarse
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2️⃣ Formulario para Agregar Tareas
+Componente: <TaskForm />
+🔹 Campo de texto para ingresar una nueva tarea
+🔹 Botón "Agregar"
+🔹 Al enviar, la lista se actualiza automáticamente
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3️⃣ Resumen de Tareas
+Componente: <TaskSummary />
+🔹 Total de tareas
+🔹 Tareas completadas
+🔹 Tareas pendientes
+🔹 Se actualiza dinámicamente al agregar, completar o eliminar tareas
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+✨ Funcionalidades adicionales
+✅ Registro y login de usuarios (signup / signin)
+✅ Cada usuario ve únicamente sus propias tareas
+✅ Backend seguro con Supabase (o Firebase/PostgreSQL)
+✅ Despliegue continuo con Vercel
