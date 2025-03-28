@@ -5,7 +5,7 @@ import { adminDb } from './admin';
 import { Timestamp } from 'firebase-admin/firestore';
 
 import { 
-  collection, W
+  collection, 
   query, 
   where, 
   getDocs, 
