@@ -14,7 +14,7 @@ export default function Dashboard() {
   const router = useRouter()
   const dispatch = useAppDispatch()
   const tasks = useAppSelector((state) => state.tasks)
-
+  console.log(tasks)
   useEffect(() => {
     dispatch(fetchTasks())
   }, [dispatch])
