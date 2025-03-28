@@ -34,6 +34,9 @@
     "tailwindcss-animated": "^2.0.0",
     "tw-animate-css": "^1.2.4"
   },
+  "browser":{
+    "child_process": false
+    },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",

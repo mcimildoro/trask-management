@@ -11,72 +11,65 @@ import {
 } from 'firebase/auth';
 import { useState, useEffect } from 'react';
 
+
 // Register a new user
 export async function registerUser(name: string, email: string, password: string) {
   try {
-    // Create user in Firebase Auth
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    const user = userCredential.user;
-    
-    // Store additional user data in Firestore
-    const response = await fetch('/api/auth/register', {
-      method: 'POST',
+    // Crear usuario en Firebase Auth
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password)
+    const user = userCredential.user
+
+    // Enviar datos al backend para guardarlos en Firestore
+    const response = await fetch("/api/auth/register", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         uid: user.uid,
         name,
         email,
       }),
-    });
-    
+    })
+
     if (!response.ok) {
-      // If storing user data fails, delete the auth user
-      await user.delete();
-      const error = await response.json();
-      throw new Error(error.message || 'Failed to create user profile');
+      const errorData = await response.json()
+      console.error("❌ Error al guardar en Firestore:", errorData)
+
+      // Si falla guardar en Firestore, elimina el usuario de Auth
+      await user.delete()
+      throw new Error(errorData.message || "Error al crear perfil de usuario")
     }
-    
-    return { uid: user.uid, email: user.email };
-  } catch (error: unknown) {
-      if (error instanceof Error) {
-        // Redundant line removed as error is already handled in the catch block
-      }
-      throw new Error('Registration failed');
-    }
+
+
+    return { uid: user.uid, email: user.email }
+  } catch (error) {
+    console.error("❌ Error en registro:", error)
+    throw new Error("El registro ha fallado")
+  }
 }
 
-// Login user
 export async function loginUser(email: string, password: string) {
   try {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
-    
-    // Get ID token for server-side authentication
+
     const idToken = await user.getIdToken();
-    
-    // Send token to backend to set session cookie
-    const response = await fetch('/api/auth/login', {
+
+    await fetch('/api/auth/login', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ idToken }),
     });
-    
-    if (!response.ok) {
-      throw new Error('Failed to create session');
-    }
-    
+
     return { uid: user.uid, email: user.email };
   } catch (error: unknown) {
-    if (error instanceof Error) {
-      throw new Error(error.message || 'Login failed');
-    }
-    throw new Error('Login failed');
+    console.error("❌ Login error:", error);
+    throw new Error("Login failed");
   }
 }
+
+
 
 // Logout user
 export async function logoutUser() {
