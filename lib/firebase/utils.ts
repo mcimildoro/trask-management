@@ -2,10 +2,10 @@
 
 import { db } from './client';
 import { adminDb } from './admin';
-import { FieldValue } from 'firebase-admin/firestore';
+import { Timestamp } from 'firebase-admin/firestore';
 
 import { 
-  collection, 
+  collection, W
   query, 
   where, 
   getDocs, 
@@ -102,25 +102,24 @@ export const serverUtils = {
     } as Task));
   },
   
-  // Add a new task (server-side)
+// Add a new task (server-side)
   async addTask(title: string, userId: string): Promise<Task> {
-    const tasksRef = adminDb.collection('tasks');
-    
-    const newTask = {
-      title,
-      completed: false,
-      userId,
-      createdAt: FieldValue.serverTimestamp()
+  const tasksRef = adminDb.collection("tasks");
 
+  const newTask = {
+    title,
+    completed: false,
+    userId,
+    createdAt: Timestamp.now() // ✅ Cambiado
+  };
 
-    };
-    
-    const docRef = await tasksRef.add(newTask);
-    
-    return {
-      id: docRef.id,
-      ...newTask,
-      createdAt: new Date() // For client-side representation
-    };
+  const docRef = await tasksRef.add(newTask);
+
+  return {
+    id: docRef.id,
+    ...newTask,
+    createdAt: new Date() // Para el cliente
+  };
   }
+
 };
