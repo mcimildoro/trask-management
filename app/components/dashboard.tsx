@@ -32,7 +32,6 @@ export default function Dashboard() {
             onClick={handleLogout}
             className="flex items-center gap-2 px-4 py-2 rounded-full bg-white shadow hover:bg-gray-100 transition"
           >
- 
             <Image
               src="/user.png" 
               alt="avatar"
