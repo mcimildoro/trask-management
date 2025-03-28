@@ -3,8 +3,8 @@ import { db } from "@/lib/firebase/client"
 import { doc, deleteDoc, updateDoc, getDoc } from "firebase/firestore"
 import { NextRequest, NextResponse } from "next/server"
 
-export async function PATCH(request: NextRequest, context: { params: { id: string } }) {
-  const { id: taskId } = context.params
+export async function PATCH(_: NextRequest, { params }: { params: { id: string } }) {
+  const taskId = params.id;
   const ref = doc(db, "tasks", taskId)
   const snap = await getDoc(ref)
 
@@ -27,8 +27,8 @@ export async function PATCH(request: NextRequest, context: { params: { id: strin
   })
 }
 
-export async function DELETE(request: NextRequest, context: { params: { id: string } }) {
-  const { id: taskId } = context.params
+export async function DELETE(_: NextRequest, { params }: { params: { id: string } }) {
+  const taskId = params.id;
   await deleteDoc(doc(db, "tasks", taskId))
   return NextResponse.json({ message: "Deleted", id: taskId })
 
