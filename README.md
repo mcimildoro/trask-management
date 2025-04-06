@@ -1,32 +1,135 @@
-📝 Task Management App
-Aplicación desarrollada con React, Redux Toolkit y Next.js para la gestión de tareas.
-Permite a los usuarios autenticarse, crear, completar y eliminar tareas, además de visualizar un resumen dinámico.
+# Task Management Application
 
-🔐 Backend originalmente propuesto en Java, pero se ha implementado con Supabase (PostgreSQL + Auth) para aprovechar un entorno fullstack JavaScript moderno, desplegable fácilmente en plataformas como Vercel
+Una aplicación full-stack para la gestión de tareas con autenticación de usuarios y operaciones CRUD.
+
+## 🛠 Tecnologías Utilizadas
+
+### Frontend
+- **Next.js 14** - Framework de React con Server Side Rendering
+- **TypeScript** - Superset de JavaScript con tipado estático
+- **Redux Toolkit** - Manejo de estado global
+- **TailwindCSS** - Framework de CSS para estilos
+- **Shadcn/UI** - Componentes de UI reutilizables
+
+#### Dependencias Frontend
+```bash
+# UI Components and Utilities
+npx shadcn@latest init
+npm i @radix-ui/react-slot
+npm i class-variance-authority
+npm i clsx (para construir cadenas de tipo className de forma condicional)
+npm i tailwindcss-animated
+npm i lucide-react
+
+# State Management
+npm i @reduxjs/toolkit react-redux
 
 
-🚀 Funcionalidades principales
-1️⃣ Lista de Tareas
-Componente: <TaskList />
-🔹 Muestra todas las tareas del usuario desde el backend
-🔹 Permite marcar una tarea como completada
-🔹 Cada tarea puede eliminarse
+### Backend
+- **Spring Boot** - Framework de Java para el backend
+- **Spring Security** - Seguridad y autenticación
+- **Spring Data JPA** - Persistencia de datos
+- **MYSQL** - Base de datos relacional
 
-2️⃣ Formulario para Agregar Tareas
-Componente: <TaskForm />
-🔹 Campo de texto para ingresar una nueva tarea
-🔹 Botón "Agregar"
-🔹 Al enviar, la lista se actualiza automáticamente
+## 🏗 Patrones de Diseño Implementados
 
-3️⃣ Resumen de Tareas
-Componente: <TaskSummary />
-🔹 Total de tareas
-🔹 Tareas completadas
-🔹 Tareas pendientes
-🔹 Se actualiza dinámicamente al agregar, completar o eliminar tareas
+### Frontend
+- **Atomic Design** - Organización de componentes en átomos, moléculas y organismos
+- **Custom Hooks** - Para lógica reutilizable (useAuth, useUser)
+- **Redux Slice Pattern** - Para organizar la lógica de estado
+- **Container/Presentational Pattern** - Separación de lógica y presentación
 
-✨ Funcionalidades adicionales
-✅ Registro y login de usuarios (signup / signin)
-✅ Cada usuario ve únicamente sus propias tareas
-✅ Backend seguro con Supabase (o Firebase/PostgreSQL)
-✅ Despliegue continuo con Vercel
+### Backend
+- **DTO Pattern** - Para transferencia de datos entre capas
+- **Repository Pattern** - Para abstracción de la capa de datos
+- **Service Layer Pattern** - Para la lógica de negocio
+- **Controller Pattern** - Para el manejo de endpoints
+
+## 📁 Estructura del Proyecto
+
+```
+task-management/
+├── frontend/
+│   ├── app/
+│   │   ├── components/
+│   │   ├── lib/
+│   │   └── pages/
+│   ├── public/
+│   └── package.json
+│
+└── backend/
+    ├── src/
+    │   ├── main/
+    │   │   ├── java/
+    │   │   └── resources/
+    │   └── test/
+    └── pom.xml
+```
+
+## 🚀 Características
+
+- Autenticación de usuarios (login/registro)
+- CRUD completo de tareas
+- Interfaz responsiva y moderna
+- Estado global con Redux
+- Validación de formularios
+- Manejo de errores
+- Loading states y feedback visual
+- Protección de rutas
+
+## 🔒 Seguridad
+
+- Autenticación basada en JWT
+- Contraseñas hasheadas con bcrypt
+- CORS configurado
+- Protección contra XSS
+- Validación de datos en frontend y backend
+
+## 🌟 Mejores Prácticas Implementadas
+
+- Clean Code
+- DRY (Don't Repeat Yourself)
+- SOLID Principles
+- Error Handling
+- TypeScript para type safety
+- Componentes reutilizables
+- Custom hooks para lógica compartida
+- Manejo de estado predictible con Redux
+
+## 📦 Instalación y Uso
+
+1. Clonar el repositorio
+```bash
+git clone [url-del-repositorio]
+```
+
+2. Instalar dependencias del frontend
+```bash
+cd frontend
+npm install
+```
+
+3. Configurar variables de entorno
+```bash
+# Frontend (.env.local)
+NEXT_PUBLIC_API_URL=http://localhost:8080
+
+# Backend (application.properties)
+spring.datasource.url=jdbc:postgresql://localhost:5432/taskdb
+```
+
+4. Iniciar el proyecto
+```bash
+# Frontend
+npm run dev
+
+# Backend
+./mvnw spring-boot:run
+```
+
+## 🤝 Contribuir
+
+Las contribuciones son bienvenidas. Por favor, abre un issue primero para discutir los cambios que te gustaría hacer.
+
+## 📝 Licencia
+![image](https://github.com/user-attachments/assets/5441b365-2295-407f-a6d8-5a0998d16491)
